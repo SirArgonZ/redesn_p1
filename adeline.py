@@ -1,6 +1,6 @@
 import csv
 import pandas as pd
-
+import random as nr
 def normalizacion():
     print("")
 
@@ -21,12 +21,20 @@ validacion = txtdata.loc["V4053":"V4380"]
 test = txtdata.loc["V4381":]
 # print(test.head())
 # print(test.tail())
-
+min = []
+max = []
 for column in datos:
+    minparcial = datos[column].min()
+    min.append(minparcial)
+    maxparcial = datos[column].max()
+    max.append(maxparcial)
 
+print(min)
+print(max)
 for column in datos:
-    print(column)
     datos[column] = (datos[column]-datos[column].min())/(datos[column].max()-datos[column].min())
 
+# nr.seed(9001)
 
 print(datos.head())
+print(nr.randint(0,10)/10)

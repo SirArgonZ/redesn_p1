@@ -12,12 +12,20 @@ with open("DatosPracticaEnergia1.txt") as f:
 txtdata = pd.read_csv('DatosPracticaEnergia1.txt', sep=' ')
 # print(txtdata.head())
 # 767
-datos = txtdata.loc[:"V4052"]
+datos = txtdata.loc[:"V438"]
+# training = datos.sample(n=767)
+# 1095
+print(datos.shape)
+print(datos.head())
+train = datos.sample(frac=0.7)
+validation = datos.drop(train.index)
+print(train.head())
+print(validation.head)
+print(len(train.index))
+print(len(validation.index))
+# 328
 
-print(datos.tail())
-validacion = txtdata.loc["V4053":"V4380"]
-# print(validacion.head())
-# print(validacion.tail())
+
 test = txtdata.loc["V4381":]
 # print(test.head())
 # print(test.tail())
@@ -29,12 +37,15 @@ for column in datos:
     maxparcial = datos[column].max()
     max.append(maxparcial)
 
-print(min)
-print(max)
+# print(min)
+# print(max)
 for column in datos:
     datos[column] = (datos[column]-datos[column].min())/(datos[column].max()-datos[column].min())
 
 # nr.seed(9001)
 
-print(datos.head())
-print(nr.randint(0,10)/10)
+# print(datos.head())
+random = datos.sample(n=10)
+# print(random)
+# print(len(datos.index))
+# print(nr.randint(0,10)/10)

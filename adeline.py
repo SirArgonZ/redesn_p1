@@ -42,4 +42,7 @@ for column in datos:
     train[column] = (train[column]-train[column].min())/(train[column].max()-train[column].min())
 
 print(train.head())
-print(nr.randint(0,10)/10)
+for element in train:
+    train['weight'] = nr.randint(0, 1000000)/1000000
+print(nr.randint(0, 1000000)/1000000)
+print(train.head())

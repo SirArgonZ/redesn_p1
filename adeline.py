@@ -11,41 +11,35 @@ with open("DatosPracticaEnergia1.txt") as f:
 # Crea un dataframe con pandas con la información original, con las columnas: counterinfo_id, timestamp y consumption
 txtdata = pd.read_csv('DatosPracticaEnergia1.txt', sep=' ')
 # print(txtdata.head())
-# 767
+# Selects 1095 rows from the original dataframe
 datos = txtdata.loc[:"V438"]
-# training = datos.sample(n=767)
-# 1095
-print(datos.shape)
-print(datos.head())
+# test data from 2008
+test = txtdata.loc["V4381":]
+# 766
 train = datos.sample(frac=0.7)
+# 329
 validation = datos.drop(train.index)
 print(train.head())
-print(validation.head)
+print(validation.head())
 print(len(train.index))
 print(len(validation.index))
-# 328
 
 
-test = txtdata.loc["V4381":]
+
 # print(test.head())
 # print(test.tail())
 min = []
 max = []
+# Normalization
 for column in datos:
-    minparcial = datos[column].min()
+    minparcial = train[column].min()
     min.append(minparcial)
-    maxparcial = datos[column].max()
+    maxparcial = train[column].max()
     max.append(maxparcial)
 
-# print(min)
-# print(max)
+
 for column in datos:
-    datos[column] = (datos[column]-datos[column].min())/(datos[column].max()-datos[column].min())
+    train[column] = (train[column]-train[column].min())/(train[column].max()-train[column].min())
 
-# nr.seed(9001)
-
-# print(datos.head())
-random = datos.sample(n=10)
-# print(random)
-# print(len(datos.index))
-# print(nr.randint(0,10)/10)
+print(train.head())
+print(nr.randint(0,10)/10)

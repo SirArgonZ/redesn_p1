@@ -1,5 +1,6 @@
 import csv
 import pandas as pd
+import numpy as np
 import random as nr
 def normalizacion():
     print("")
@@ -24,10 +25,6 @@ print(validation.head())
 print(len(train.index))
 print(len(validation.index))
 
-
-
-# print(test.head())
-# print(test.tail())
 min = []
 max = []
 # Normalization
@@ -41,8 +38,15 @@ for column in datos:
 for column in datos:
     train[column] = (train[column]-train[column].min())/(train[column].max()-train[column].min())
 
+
+train['weight'] = np.random.randint(0, 1000000, size=len(train))/1000000
+# print(nr.randint(0, 1000000)/1000000))
+umbral = nr.randint(0, 1000000)/1000000
 print(train.head())
-for element in train:
-    train['weight'] = nr.randint(0, 1000000)/1000000
-print(nr.randint(0, 1000000)/1000000)
-print(train.head())
+print(umbral)
+i =0
+for col in train:
+    for element in col:
+        print (element)
+        if(i==2):
+            break

@@ -21,7 +21,7 @@ train = datos.sample(frac=0.7)
 # 329
 validation = datos.drop(train.index)
 print(train.head())
-print(validation.head())
+print(validation.head())        
 print(len(train.index))
 print(len(validation.index))
 
@@ -45,8 +45,8 @@ umbral = nr.randint(0, 1000000)/1000000
 print(train.head())
 print(umbral)
 i =0
-for col in train:
-    for element in col:
-        print (element)
-        if(i==2):
-            break
+print(train.tail())
+for index in train.index:
+    print(index)
+    for col in train:
+        print(train[col].loc[index])
